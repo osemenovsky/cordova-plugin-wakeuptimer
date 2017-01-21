@@ -18,6 +18,7 @@ static NSString * const kWakeupPluginJSONSoundKey = @"sound";
 static NSString * const kWakeupPluginJSONDaysKey = @"days";
 static NSString * const kWakeupPluginJSONHourKey = @"hour";
 static NSString * const kWakeupPluginJSONMinuteKey = @"minute";
+static NSString * const kWakeupPluginJSONSecondKey = @"second";
 static NSString * const kWakeupPluginJSONSecondsKey = @"seconds";
 static NSString * const kWakeupPluginJSONAlarmDateKey = @"alarm_date";
 
@@ -299,11 +300,12 @@ static NSString * const kWakeupPluginAlarmSettingsFile = @"alarmsettings.plist";
     NSDate * now = [NSDate date];
     int hour=[time objectForKey:kWakeupPluginJSONHourKey]!=nil ? [[time objectForKey:kWakeupPluginJSONHourKey] intValue] : -1;
     int minute=[time objectForKey:kWakeupPluginJSONMinuteKey]!=nil ? [[time objectForKey:kWakeupPluginJSONMinuteKey] intValue] : 0;
+    int second=[time objectForKey:kWakeupPluginJSONSecondKey]!=nil ? [[time objectForKey:kWakeupPluginJSONSecondKey] intValue] : 0;
     NSCalendar * gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *nowComponents =[gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:now]; // set to current day
     [nowComponents setHour:hour];
     [nowComponents setMinute:minute];
-    [nowComponents setSecond:0];
+    [nowComponents setSecond:second];
     alarmDate = [gregorian dateFromComponents:nowComponents];
 
     if ( [alarmDate compare:now]==NSOrderedAscending){
