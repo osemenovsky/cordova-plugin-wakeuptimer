@@ -252,7 +252,7 @@ public class WakeupPlugin extends CordovaPlugin {
 
 		int hour=(time.has("hour")) ? time.getInt("hour") : -1;
 		int minute=(time.has("minute")) ? time.getInt("minute") : 0;
-		int minute=(time.has("second")) ? time.getInt("second") : 0;
+		int second=(time.has("second")) ? time.getInt("second") : 0;
 
 		if(hour>=0){
 			calendar.set(Calendar.HOUR_OF_DAY, hour);
